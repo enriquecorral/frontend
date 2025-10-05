@@ -38,6 +38,11 @@ export default function ProfileView() {
     },
     onSuccess: (_data) => {
       console.log(_data);
+      queryClient.setQueryData(["user"], (prevData: User) => ({
+        ...prevData,
+        image: _data,
+      }));
+      toast.success("Imagen subida correctamente");
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
